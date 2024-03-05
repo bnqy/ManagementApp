@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Blazor.Core" Version="24.2.9" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="24.2.9" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="24.2.9" />
+  </ItemGroup>
+
 </Project>
