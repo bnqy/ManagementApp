@@ -2,6 +2,8 @@ using ManagementApp.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
+using Syncfusion.Blazor;  // namespace for sync blazor
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +11,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+builder.Services.AddSyncfusionBlazor();   // sync blazor add
+
 var app = builder.Build();
+
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("my_license");  // license if use commercially
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
