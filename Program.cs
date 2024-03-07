@@ -15,7 +15,7 @@ builder.Services.AddSyncfusionBlazor();   // sync blazor add
 
 var app = builder.Build();
 
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("my_license");  // license if use commercially
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(builder.Configuration.GetConnectionString("Syncfusion"));  // license if use commercially
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

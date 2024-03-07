@@ -4,10 +4,12 @@
 <h3>Employee Management</h3>
 
 <div style="max-width:900px">
-    <SfGrid DataSource="employeeData" AllowPaging="true">
+    <SfGrid DataSource="employeeData" AllowPaging="true" AllowGrouping="true" AllowFiltering="true" AllowSorting="true" Toolbar="@toolBar">
         <GridPageSettings PageSize="10"></GridPageSettings>
+        <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.Menu"></GridFilterSettings>
+        <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true"></GridEditSettings>
         <GridColumns>
-            <GridColumn Field="@nameof(EmployeeModel.Id)" Width="50px"></GridColumn>
+            <GridColumn IsPrimaryKey="true" Field="@nameof(EmployeeModel.Id)" Width="50px"></GridColumn>
             <GridColumn HeaderText="First name" Field="@nameof(EmployeeModel.FirstName)"></GridColumn>
             <GridColumn HeaderText="Last name" Field="@nameof(EmployeeModel.LastName)"></GridColumn>
             <GridColumn HeaderText="Job Title" Field="@nameof(EmployeeModel.JobTitle)" Width="100px"></GridColumn>
@@ -20,6 +22,7 @@
 
 @code {
     private List<EmployeeModel>? employeeData = null;
+    private List<object> toolBar = new List<object> { "Add", "Edit", "Delete", "Update", "Cancel", "Search" };
 
     protected override void OnInitialized()
     {
