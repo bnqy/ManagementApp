@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ManagementApp.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManagementApp.Data
 {
@@ -10,5 +11,8 @@ namespace ManagementApp.Data
         {
             
         }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeJobTitle> EmployeeJobTitles { get; set; }
     }
 }

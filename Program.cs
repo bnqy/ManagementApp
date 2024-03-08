@@ -1,15 +1,20 @@
 using ManagementApp.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-
+using Microsoft.EntityFrameworkCore;
 using Syncfusion.Blazor;  // namespace for sync blazor
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<ManagementDbContext>(options => options.UseSqlServer(
+	builder.Configuration.GetConnectionString("ManagementDbConnection")));
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
 
 builder.Services.AddSyncfusionBlazor();   // sync blazor add
 
