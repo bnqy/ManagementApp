@@ -12,7 +12,14 @@ namespace ManagementApp.Data
             
         }
 
-        public DbSet<Employee> Employees { get; set; }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+			SeedData.AddEmployeeData(modelBuilder);
+		}
+
+		public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeJobTitle> EmployeeJobTitles { get; set; }
     }
 }
