@@ -1,4 +1,6 @@
 using ManagementApp.Data;
+using ManagementApp.Services;
+using ManagementApp.Services.Contracts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<ManagementDbContext>(options => options.UseSqlServ
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IEmployeeManagementService, EmployeeManagementService>();
 
 
 builder.Services.AddSyncfusionBlazor();   // sync blazor add
