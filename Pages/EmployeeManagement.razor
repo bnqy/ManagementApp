@@ -38,7 +38,16 @@
                 </EditTemplate>
             </GridColumn>
             <GridColumn HeaderText="Date of Birth" Field="@nameof(EmployeeModel.DateOfBirth)" Format="d"></GridColumn>
-            <GridColumn HeaderText="Reports" Field="@nameof(EmployeeModel.ReportToEmpId)" Width="100px"></GridColumn>
+            @*<GridColumn HeaderText="Reports" Field="@nameof(EmployeeModel.ReportToEmpId)" Width="100px"></GridColumn>*@
+            <GridForeignColumn HeaderText="Report To" TValue="ReportToModel" Field="@nameof(EmployeeModel.ReportToEmpId)" ForeignDataSource="reportToModelsData" ForeignKeyValue="ReportToName" Width="130px">
+                <EditTemplate>
+                    <SfDropDownList @bind-value="@((context as EmployeeModel).ReportToEmpId)" ID="ReportToEmpId" DataSource="reportToModelsData" TItem="ReportToModel" TValue="Nullable<int>">
+                        <DropDownListFieldSettings Text="ReportToName" Value="ReportToEmpId">
+
+                        </DropDownListFieldSettings>
+                    </SfDropDownList>
+                </EditTemplate>
+            </GridForeignColumn>
         </GridColumns>
     </SfGrid>
 </div>
@@ -53,11 +62,13 @@
     private string[] genderCollection = Enum.GetNames(typeof(GenderVal)); 
     private List<EmployeeModel>? employeeData = null;
     private List<EmployeeJobTitle>? employeeJobTitleData;
+    private List<ReportToModel>? reportToModelsData;
     //private List<object> toolBar = new List<object> { "Add", "Edit", "Delete", "Update", "Cancel", "Search" };
 
     protected override async Task OnInitializedAsync()
     {
         employeeData = await EmployeeManagementService.GetEmployees();
         employeeJobTitleData = await EmployeeManagementService.GetEmployeeJobs();
+        reportToModelsData = await EmployeeManagementService.GetReportToEmployees();
     }
 }
